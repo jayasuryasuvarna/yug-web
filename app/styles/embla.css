@@ -1,0 +1,27 @@
+.embla {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .embla__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .embla__container {
+    display: flex;
+  }
+  
+  .embla__slide {
+    position: relative;
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  
+  .embla__slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
