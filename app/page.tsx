@@ -189,14 +189,12 @@ const Features = () => {
 
 export default async function Page() {
   const { isEnabled } = draftMode();
-  const allPosts = await getAllPosts(isEnabled);
-  const heroPost = allPosts[0];
   const heroComponent = await getHeroComponent(isEnabled);
 
   return (
     <div className="">
       {/* <Intro /> */}
-      {heroPost && (
+      {heroComponent && (
         <HeroPost
           title={heroComponent.title}
           coverImage={heroComponent.coverImage}
