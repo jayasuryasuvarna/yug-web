@@ -1,23 +1,13 @@
-// app/components/ContactSection.tsx
 "use client";
 import React, { useRef, useState } from 'react';
-import { Mail, Phone, Send, User } from 'lucide-react';
+import { Mail, Phone, Send, User, MessageSquare, Building2 } from 'lucide-react';
 import { submitContactForm } from '@/app/actions/contact';
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  phone: string;
-  queryType: string;
-  message: string;
-}
 
 export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
   const [pending, setPending] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Using Server Action with Client Form
   async function handleSubmit(formData: FormData) {
     setPending(true);
     setSubmitStatus('idle');
@@ -38,24 +28,68 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Have questions about our properties or investment opportunities? 
-              Our team is here to help you make informed decisions.
+    <section className="py-24 md:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Content */}
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-900/5 rounded-full text-sm mb-6">
+              <MessageSquare className="w-4 h-4 text-gray-600" />
+              <span className="font-medium text-gray-600">Get in Touch</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Let's Discuss Your{' '}
+              <span className="relative">
+                <span className="relative z-10">Investment Goals</span>
+                <span className="absolute bottom-0 left-0 w-full h-3 bg-gradient-to-r from-gray-900/[0.08] to-gray-900/[0.02]"></span>
+              </span>
+            </h2>
+
+            <p className="text-xl text-gray-600 mb-8">
+              Our team of agricultural investment experts is here to help you make informed decisions about your future investments.
             </p>
+
+            {/* Contact Info Cards */}
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="p-3 bg-white rounded-lg shadow-sm">
+                  <Phone className="w-6 h-6 text-gray-900" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-1">Call Us</h3>
+                  <p className="text-gray-600">+91 98765 43210</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="p-3 bg-white rounded-lg shadow-sm">
+                  <Mail className="w-6 h-6 text-gray-900" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-1">Email Us</h3>
+                  <p className="text-gray-600">contact@yugestates.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="p-3 bg-white rounded-lg shadow-sm">
+                  <Building2 className="w-6 h-6 text-gray-900" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-1">Visit Us</h3>
+                  <p className="text-gray-600">123 Agri Tower, Farm Road<br />Bangalore, Karnataka 560001</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Form Container */}
-          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm">
+          {/* Right Form */}
+          <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
             <form action={handleSubmit} ref={formRef} className="space-y-6">
               {/* Name Input */}
               <div>
-                <label className="block text-gray-700 mb-2" htmlFor="name">
+                <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="name">
                   Full Name
                 </label>
                 <div className="relative">
@@ -67,7 +101,7 @@ export default function ContactSection() {
                     id="name"
                     name="name"
                     required
-                    className="block w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-colors"
+                    className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -75,9 +109,8 @@ export default function ContactSection() {
 
               {/* Email and Phone Grid */}
               <div className="grid md:grid-cols-2 gap-6">
-                {/* Email Input */}
                 <div>
-                  <label className="block text-gray-700 mb-2" htmlFor="email">
+                  <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="email">
                     Email Address
                   </label>
                   <div className="relative">
@@ -89,15 +122,14 @@ export default function ContactSection() {
                       id="email"
                       name="email"
                       required
-                      className="block w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-colors"
+                      className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
                       placeholder="Enter your email"
                     />
                   </div>
                 </div>
 
-                {/* Phone Input */}
                 <div>
-                  <label className="block text-gray-700 mb-2" htmlFor="phone">
+                  <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="phone">
                     Phone Number
                   </label>
                   <div className="relative">
@@ -109,7 +141,7 @@ export default function ContactSection() {
                       id="phone"
                       name="phone"
                       required
-                      className="block w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-colors"
+                      className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -118,14 +150,14 @@ export default function ContactSection() {
 
               {/* Query Type Select */}
               <div>
-                <label className="block text-gray-700 mb-2" htmlFor="queryType">
+                <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="queryType">
                   Type of Query
                 </label>
                 <select
                   id="queryType"
                   name="queryType"
                   required
-                  className="block w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-colors"
+                  className="block w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
                 >
                   <option value="">Select your query type</option>
                   <option value="property">Property Information</option>
@@ -137,7 +169,7 @@ export default function ContactSection() {
 
               {/* Message Textarea */}
               <div>
-                <label className="block text-gray-700 mb-2" htmlFor="message">
+                <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="message">
                   Message
                 </label>
                 <textarea
@@ -145,39 +177,39 @@ export default function ContactSection() {
                   name="message"
                   required
                   rows={4}
-                  className="block w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition-colors resize-none"
-                  placeholder="Tell us about your requirements..."
+                  className="block w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors resize-none"
+                  placeholder="Tell us about your investment goals..."
                 />
               </div>
 
               {/* Submit Button */}
-              <div className="flex flex-col items-center">
+              <div>
                 <button
                   type="submit"
                   disabled={pending}
-                  className={`flex items-center justify-center w-full md:w-auto px-8 py-4 text-white font-semibold rounded-lg transition-all
-                    ${pending 
-                      ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'bg-green-600 hover:bg-green-700'}`}
+                  className={`w-full py-4 px-6 rounded-xl text-white font-medium transition-all
+                    ${ pending
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-gray-900 hover:bg-gray-800' }`}
                 >
                   {pending ? (
                     'Sending...'
                   ) : (
-                    <>
+                    <span className="flex items-center justify-center gap-2">
                       Send Message
-                      <Send className="ml-2 h-5 w-5" />
-                    </>
+                      <Send className="h-5 w-5" />
+                    </span>
                   )}
                 </button>
 
                 {/* Status Messages */}
                 {submitStatus === 'success' && (
-                  <p className="mt-4 text-green-600">
+                  <p className="mt-4 text-center text-emerald-600 font-medium">
                     Thank you! We'll get back to you soon.
                   </p>
                 )}
                 {submitStatus === 'error' && (
-                  <p className="mt-4 text-red-600">
+                  <p className="mt-4 text-center text-red-600 font-medium">
                     Something went wrong. Please try again.
                   </p>
                 )}

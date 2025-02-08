@@ -2,10 +2,11 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { CMS_NAME } from "@/lib/constants";
 import Footer from "./components/footer";
+import Header from "./components/header";
 
 export const metadata = {
-  title: `Next.js and ${CMS_NAME} Example`,
-  description: `This is a blog built with Next.js and ${CMS_NAME}.`,
+  title: `Next.js and ${ CMS_NAME } Example`,
+  description: `This is a blog built with Next.js and ${ CMS_NAME }.`,
 };
 
 const inter = Inter({
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body>
         <section className="min-h-screen">
+          <Header />
           <main>{children}</main>
           <Footer />
         </section>
