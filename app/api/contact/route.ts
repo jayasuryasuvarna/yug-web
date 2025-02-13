@@ -4,8 +4,8 @@ import type { NextRequest } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
-    console.log(data);
-    
+    // console.log(data);
+
     // Add your email sending logic here
     // For example, using nodemailer or an email service
 

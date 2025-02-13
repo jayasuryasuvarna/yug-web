@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 export default async function FeaturedProperties() {
 
   const data = await getFeaturedProperties();
-  console.log("data---->", data);
   // Sample property data - replace with data from Contentful
   const properties: Property[] = data.map((item: any) => ({
     images: item.imagesCollection.items.map((img: any) => img.url),
