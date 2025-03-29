@@ -1,5 +1,6 @@
 import { HERO_COMPONENT_QUERY } from '@/lib/queries/heroComponentQuery';
 import { FEATURED_PROPERTIES } from './queries/featuredPropertiesQuery';
+import { ALL_PROPERTIES } from './queries/properties/properties';
 import { PROPERTY_FIELDS } from './queries/propertyQuery';
 
 const POST_GRAPHQL_FIELDS = `
@@ -165,4 +166,10 @@ export async function getPropertyBySlug(slug: string) {
   const entry = await fetchGraphQL(query, variables);
 
   return entry?.data?.propertyCollection?.items?.[0];
+}
+
+
+export async function getAllProperties() {
+  const response = await fetchGraphQL(ALL_PROPERTIES);
+  return response.data;
 }

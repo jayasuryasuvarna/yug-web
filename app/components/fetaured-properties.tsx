@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight, MapPin, Sprout, ArrowUpRight, ArrowRight } from "lucide-react";
-import { Property, PropertyCard } from "./property-card";
+import { Property, PropertyCard } from "./featured-property-card";
 import { getFeaturedProperties } from "@/lib/api";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
