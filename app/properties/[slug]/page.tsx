@@ -235,8 +235,8 @@ export default async function PropertyPage({ params }: { params: { slug: string;
                             <div key={index} className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
                                 <div className="relative h-64">
                                     <Image
-                                        src={crop.cropType.image.url}
-                                        alt={crop.cropType.name}
+                                        src={crop?.cropType?.image?.url}
+                                        alt={crop?.cropType?.name}
                                         fill
                                         className="object-cover"
                                     />
@@ -244,25 +244,25 @@ export default async function PropertyPage({ params }: { params: { slug: string;
                                 <div className="p-8">
                                     <div className="flex items-center gap-3 mb-4">
                                         <Sprout className="h-6 w-6 text-gray-900" />
-                                        <h3 className="text-xl font-semibold text-gray-900">{crop.cropType.name}</h3>
+                                        <h3 className="text-xl font-semibold text-gray-900">{crop?.cropType?.name}</h3>
                                     </div>
                                     <p className="text-gray-600 mb-6">
-                                        {crop.customDescription || crop.cropType.description}
+                                        {crop?.customDescription || crop?.cropType?.description}
                                     </p>
                                     <div className="grid grid-cols-2 gap-6 mb-6">
                                         <div>
                                             <p className="text-sm text-gray-500 mb-1">Yearly Yield</p>
-                                            <p className="font-semibold text-gray-900">{crop.estimatedYieldPerYear} units</p>
+                                            <p className="font-semibold text-gray-900">{crop?.estimatedYieldPerYear} units</p>
                                         </div>
                                         <div>
                                             <p className="text-sm text-gray-500 mb-1">Revenue per Unit</p>
-                                            <p className="font-semibold text-gray-900">₹{crop.revenuePerUnit}</p>
+                                            <p className="font-semibold text-gray-900">₹{crop?.revenuePerUnit}</p>
                                         </div>
                                     </div>
                                     <div className="bg-gray-900/5 rounded-lg p-6 mb-6">
                                         <p className="text-sm font-medium text-gray-900 mb-2">Estimated Annual Revenue</p>
                                         <p className="text-2xl font-bold text-gray-900">
-                                            ₹{(crop.estimatedYieldPerYear * crop.revenuePerUnit - crop.maintenanceCost).toLocaleString()}
+                                            ₹{(crop?.estimatedYieldPerYear * crop?.revenuePerUnit - crop?.maintenanceCost).toLocaleString()}
                                         </p>
                                     </div>
                                     <div className="space-y-2">

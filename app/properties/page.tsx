@@ -12,6 +12,7 @@ interface Property {
     totalArea: string;
     images?: { items: { url: string; }[]; };
     amenities?: { items: { name: string; }[]; };
+    slug: string;
 }
 
 export default async function PropertiesPage() {
@@ -96,6 +97,8 @@ export default async function PropertiesPage() {
                             area={property.totalArea}
                             image={property.images?.items[0]?.url || '/placeholder.jpg'}
                             amenities={property.amenities?.items.map(a => a.name) || []}
+                            slug={property.slug}
+                            images={property.images?.items}
                         />
                     ))}
                 </div>
