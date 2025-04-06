@@ -4,6 +4,7 @@ import { Filter, Search, ArrowRight, MapPin, Trees, Ruler } from 'lucide-react';
 import PropertyCard from '@/app/components/property-card';
 import { getAllProperties, getPropertyTypes, getUniqueLocations } from '@/lib/api';
 import PropertyFilters from '@/app/components/property-filters';
+import PropertySort from '@/app/components/property-sort';
 
 interface Property {
     sys: { id: string; };
@@ -20,6 +21,8 @@ interface Property {
     };
     slug: string;
 }
+
+type SortOption = 'featured' | 'price_low_high' | 'price_high_low';
 
 export default async function PropertiesPage({
     searchParams
@@ -65,6 +68,21 @@ export default async function PropertiesPage({
         );
     }
 
+    // Apply sorting
+    const sortBy = searchParams.sort as SortOption || 'featured';
+
+    properties.sort((a, b) => {
+        switch (sortBy) {
+            case 'price_low_high':
+                return a.price - b.price;
+            case 'price_high_low':
+                return b.price - a.price;
+            case 'featured':
+            default:
+                return 0; // Keep original order for featured
+        }
+    });
+
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
@@ -93,14 +111,7 @@ export default async function PropertiesPage({
                     <h2 className="text-2xl font-semibold text-gray-900">
                         {properties.length} Premium Properties
                     </h2>
-                    <div className="flex items-center gap-3">
-                        <span className="text-gray-600">Sort by:</span>
-                        <select className="border border-gray-200 rounded-lg px-4 py-2">
-                            <option>Featured First</option>
-                            <option>Price: Low to High</option>
-                            <option>Price: High to Low</option>
-                        </select>
-                    </div>
+                    <PropertySort />
                 </div>
 
                 {/* Property Grid */}
