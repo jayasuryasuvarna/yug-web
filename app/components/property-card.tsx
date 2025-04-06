@@ -16,6 +16,7 @@ interface PropertyCardProps {
     amenities: string[];
     slug: string;
     images?: { url: string; }[];
+    propertyType: string;
 }
 
 export default function PropertyCard({
@@ -26,7 +27,8 @@ export default function PropertyCard({
     image,
     amenities,
     slug,
-    images = []
+    images = [],
+    propertyType
 }: PropertyCardProps) {
     const [emblaRef, emblaApi] = useEmblaCarousel();
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -109,6 +111,12 @@ export default function PropertyCard({
                             </div>
                         </>
                     )}
+
+                    <div className="absolute top-4 left-4">
+                        <span className="bg-gray-900/80 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+                            {propertyType}
+                        </span>
+                    </div>
                 </div>
 
                 <div className="p-6 flex flex-col flex-grow">

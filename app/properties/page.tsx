@@ -128,6 +128,7 @@ export default async function PropertiesPage({
                                 amenities={property.amenitiesCollection?.items.map(a => a.name) || []}
                                 slug={property.slug}
                                 images={property.imagesCollection?.items}
+                                propertyType={property.propertyType?.name || 'Property'}
                             />
                         ))
                     ) : (
@@ -135,16 +136,6 @@ export default async function PropertiesPage({
                             No properties found matching your criteria
                         </div>
                     )}
-                </div>
-
-                {/* Pagination */}
-                <div className="mt-12 flex justify-center gap-2">
-                    <Button variant="outline" className="border-gray-200">1</Button>
-                    <Button variant="outline" className="border-gray-200">2</Button>
-                    <Button variant="outline" className="border-gray-200">3</Button>
-                    <Button variant="outline" className="border-gray-200 flex items-center gap-2">
-                        Next <ArrowRight className="h-4 w-4" />
-                    </Button>
                 </div>
             </div>
         </div>
