@@ -46,6 +46,9 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
     };
   }, [emblaApi, onSelect]);
 
+  // Format price to display per acre rate
+  const formattedPrice = `₹${ (Number(property.price)).toLocaleString('en-IN') }`;
+
   return (
     <div className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all">
       {/* Image Carousel */}
@@ -144,7 +147,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         {/* Price and CTA */}
         <div className="mt-auto flex justify-between items-center">
           <div>
-            <span className="text-2xl font-bold text-gray-900">₹{property.price}</span>
+            <span className="text-xl font-bold text-gray-900">{formattedPrice}</span>
             <span className="text-gray-600 text-sm ml-1">/acre</span>
           </div>
           <Button
