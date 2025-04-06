@@ -1,7 +1,7 @@
 import { HERO_COMPONENT_QUERY } from '@/lib/queries/heroComponentQuery';
 import { FEATURED_PROPERTIES } from './queries/featuredPropertiesQuery';
-import { ALL_PROPERTIES } from './queries/properties/properties';
 import { PROPERTY_FIELDS } from './queries/propertyQuery';
+import { propertyTypesQuery, getAllPropertiesQuery } from './queries/properties/properties';
 
 const POST_GRAPHQL_FIELDS = `
   slug
@@ -168,8 +168,18 @@ export async function getPropertyBySlug(slug: string) {
   return entry?.data?.propertyCollection?.items?.[0];
 }
 
+export async function getPropertyTypes() {
+  const response = await fetchGraphQL(propertyTypesQuery);
+  return response.data;
+}
 
 export async function getAllProperties() {
-  const response = await fetchGraphQL(ALL_PROPERTIES);
+  const response = await fetchGraphQL(getAllPropertiesQuery);
   return response.data;
+}
+
+export async function getUniqueLocations(properties: any[]) {
+  // Extract unique locations from properties
+  const locations = new Set(properties.map(property => property.location));
+  return Array.from(locations).sort();
 }

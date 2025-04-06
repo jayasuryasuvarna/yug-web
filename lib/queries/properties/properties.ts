@@ -1,26 +1,45 @@
-export const ALL_PROPERTIES = `
+export const propertyTypesQuery = `
   query {
-    propertyCollection(limit: 9) {
+    propertyTypeCollection {
+      items {
+        name
+        description
+        sys {
+          id
+        }
+      }
+    }
+  }
+`;
+
+export const getAllPropertiesQuery = `
+  query {
+    propertyCollection(limit: 10) {
       total
       items {
         sys {
           id
         }
         title
-        slug
-        price
         location
+        price
         totalArea
-        images: imagesCollection(limit: 10) {
+        propertyType {
+          name
+        }
+        imagesCollection(limit: 10) {
           items {
             url
           }
         }
-        amenities: amenitiesCollection(limit: 3) {
+        amenitiesCollection(limit: 10) {
           items {
-            name
+            ... on Amenity {
+              name
+            }
           }
         }
+        slug
       }
     }
   }
