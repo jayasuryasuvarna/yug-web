@@ -42,12 +42,14 @@ const Header = () => {
                             <Phone className="h-4 w-4" />
                             <span>+91 98765 43210</span>
                         </a>
-                        <Button
-                            className="bg-gray-900 hover:bg-gray-800 text-white"
-                            size="sm"
-                        >
-                            Contact Us
-                        </Button>
+                        <Link href="/contact">
+                            <Button
+                                className="bg-gray-900 hover:bg-gray-800 text-white"
+                                size="sm"
+                            >
+                                Contact Us
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 
