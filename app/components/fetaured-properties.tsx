@@ -9,15 +9,17 @@ import { Button } from "@/components/ui/button";
 export default async function FeaturedProperties() {
 
   const data = await getFeaturedProperties();
+  // Defensive: ensure data is always an array
+  const safeData = Array.isArray(data) ? data : [];
   // Sample property data - replace with data from Contentful
-  const properties: Property[] = data.map((item: any) => ({
-    images: item.imagesCollection.items.map((img: any) => img.url),
+  const properties: Property[] = safeData.map((item: any) => ({
+    images: Array.isArray(item.imagesCollection?.items) ? item.imagesCollection.items.map((img: any) => img.url) : [],
     title: item.title,
     slug: item.slug,
     location: item.location,
     price: item.price,
     description: item.description,
-    managedCrops: item.propertyCropsCollection.items.map((crop: any) => crop.cropType.name),
+    managedCrops: Array.isArray(item.propertyCropsCollection?.items) ? item.propertyCropsCollection.items.map((crop: any) => crop.cropType.name) : [],
     expectedYield: item.expectedYield,
   }));
 
