@@ -27,8 +27,9 @@ type SortOption = 'featured' | 'price_low_high' | 'price_high_low';
 export default async function PropertiesPage({
     searchParams
 }: {
-    searchParams: { [key: string]: string | undefined; };
+    searchParams: Promise<{ [key: string]: string | undefined; }>;
 }) {
+    const params = await searchParams;
     const [propertyTypesData, propertiesData] = await Promise.all([
         getPropertyTypes(),
         getAllProperties()
@@ -43,8 +44,8 @@ export default async function PropertiesPage({
     const locations = await getUniqueLocations(properties);
 
     // Apply filters with pattern matching
-    if (searchParams.search) {
-        const searchTerms = searchParams.search.toLowerCase().split(/\s+/);
+    if (params.search) {
+        const searchTerms = params.search.toLowerCase().split(/\s+/);
         properties = properties.filter(property => {
             const titleWords = property.title.toLowerCase();
             const locationWords = property.location.toLowerCase();
@@ -54,22 +55,22 @@ export default async function PropertiesPage({
         });
     }
 
-    if (searchParams.propertyType) {
-        const propertyType = searchParams.propertyType.toLowerCase();
+    if (params.propertyType) {
+        const propertyType = params.propertyType.toLowerCase();
         properties = properties.filter(property =>
             property.propertyType?.name.toLowerCase().includes(propertyType)
         );
     }
 
-    if (searchParams.location) {
-        const locationSearch = searchParams.location.toLowerCase();
+    if (params.location) {
+        const locationSearch = params.location.toLowerCase();
         properties = properties.filter(property =>
             property.location.toLowerCase().includes(locationSearch)
         );
     }
 
     // Apply sorting
-    const sortBy = searchParams.sort as SortOption || 'featured';
+    const sortBy = params.sort as SortOption || 'featured';
 
     properties.sort((a, b) => {
         switch (sortBy) {
