@@ -97,8 +97,9 @@ async function getProperty(slug: string) {
     return data as PropertyData;
 }
 
-export default async function PropertyPage({ params }: { params: { slug: string; }; }) {
-    const property = await getProperty(params.slug);
+export default async function PropertyPage({ params }: { params: Promise<{ slug: string }>; }) {
+    const { slug } = await params;
+    const property = await getProperty(slug);
 
     return (
         <div className="min-h-screen bg-gray-50">
