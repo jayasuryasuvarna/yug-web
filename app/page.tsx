@@ -177,7 +177,7 @@ const Features = () => {
 
 
 export default async function Page() {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const heroComponent = await getHeroComponent(isEnabled);
 
   return (
