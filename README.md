@@ -1,42 +1,72 @@
-# YUG Estates - Premium Agricultural & Residential Properties
+# YUG Estates - Premium Real Estate Solutions
 
 ## Overview
 
-YUG Estates is a Next.js-powered real estate platform specializing in premium agricultural lands, managed farmlands, luxury villas, and resort properties. Our platform aims to provide a seamless experience for users looking to invest in or purchase high-value properties.
+YUG Estates is a comprehensive Next.js-powered real estate platform offering handpicked premium properties across multiple categories. We specialize in luxury villa projects, agricultural lands, residential plots, farmhouse developments, and resort homes. Our platform provides a seamless experience for discerning investors and buyers looking for exceptional real estate opportunities.
 
 ## 🌟 Key Features
 
-### Property Categories
+### Comprehensive Property Portfolio
 
-- **Agricultural Lands**
+- **Premium Villa Projects**
+  - Luxury gated communities with world-class amenities
+  - Clubhouses with swimming pools and fitness centers
+  - Sports facilities, jogging tracks, and cycling paths
+  - Banquet halls and community event spaces
+  - Café and convenience store facilities
 
-  - Fertile farmlands
-  - Pre-developed agricultural plots
-  - Investment-ready agricultural properties
+- **Agricultural Lands & Management**
+  - Handpicked fertile farmlands in prime locations
+  - Professional farm management services
+  - Managed agricultural properties with guaranteed returns
+  - Sustainable farming practices and crop optimization
 
-- **Managed Farmlands**
+- **Residential Plots & Land**
+  - DTCP approved residential layouts
+  - Prime locations with excellent connectivity
+  - Clear titles and legal documentation
+  - Infrastructure-ready development plots
 
-  - Professional farm management
-  - Crop planning and maintenance
-  - Yield optimization services
+- **Farmhouse & Resort Homes**
+  - Exclusive farmhouse plots in scenic locations
+  - Resort-style holiday homes and weekend retreats
+  - Premium amenities and recreational facilities
+  - Investment opportunities with rental income potential
 
-- **Luxury Properties**
-  - Premium villas
-  - Resort properties
-  - Weekend homes
-  - Farm houses
+### Platform Features
 
-### User Features
+- **Property Discovery & Comparison**
+  - Browse handpicked premium properties across all categories
+  - Advanced filtering and search capabilities
+  - Side-by-side property comparison tools
+  - High-quality property images and virtual tours
 
-- Property viewing and comparison
-- Schedule property visits
-- Direct contact with property experts
-- Detailed property insights
-  - Location details
-  - Property specifications
-  - Investment potential
-  - Expected yields (for agricultural properties)
-  - High-quality property images
+- **Investment Guidance**
+  - Comprehensive investment guide for all property types
+  - ROI calculations and market analysis
+  - Risk assessment and mitigation strategies
+  - Tax benefits and legal advisory
+
+- **Expert Services**
+  - Direct contact with property experts and consultants
+  - Scheduled property visits and site inspections
+  - Professional farm management for agricultural properties
+  - End-to-end transaction support
+
+- **Detailed Property Information**
+  - Location advantages and connectivity details
+  - Property specifications and amenity listings
+  - Investment potential and appreciation forecasts
+  - Expected returns and rental income projections
+  - Legal documentation and approval status
+
+### YUG Estates Advantage
+
+- **Handpicked Properties**: Every property in our portfolio is carefully curated for quality, location advantage, and investment potential
+- **Comprehensive Solutions**: From luxury villas to agricultural lands, we offer diverse property types with end-to-end support
+- **Premium Amenities**: Our villa projects feature world-class facilities including clubhouses, pools, sports facilities, and recreational areas
+- **Professional Management**: Expert farm management services for agricultural properties with guaranteed returns
+- **Transparent Process**: Clear documentation, legal verification, and open communication throughout the investment journey
 
 ## 💻 Technical Stack
 
