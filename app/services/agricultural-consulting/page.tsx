@@ -1,80 +1,67 @@
-import React from 'react';
-import { Users, BookOpen, Lightbulb, MapPin } from 'lucide-react';
+import {
+    Clipboard,
+    Calendar,
+    Wrench,
+    Banknote,
+    PhoneCall,
+    Package,
+    Sprout,
+    Tractor,
+} from 'lucide-react';
+import ServiceDetailLayout from '@/app/components/service-detail-layout';
 
 export default function AgriculturalConsultingPage() {
     return (
-        <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-32">
-                <div className="absolute inset-0 bg-black/50 mix-blend-overlay" />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-                    <div className="max-w-3xl">
-                        <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-                            Agricultural Consulting
-                        </h1>
-                        <p className="text-xl text-gray-200 leading-relaxed">
-                            Expert advice and tailored solutions for every stage of your agricultural investment journey, from land selection to yield optimization.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Service Details */}
-            <section className="py-24">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Consulting Services</h2>
-                            <ul className="space-y-6 text-gray-600 text-lg">
-                                <li className="flex items-start gap-4">
-                                    <BookOpen className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Land assessment and suitability analysis</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <Lightbulb className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Investment planning and risk assessment</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <Users className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Personalized crop and farm management strategies</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <MapPin className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Guidance on government schemes and subsidies</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <BookOpen className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Training and workshops for investors and farmers</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="bg-gray-100 rounded-2xl h-80 flex items-center justify-center">
-                            <Users className="w-24 h-24 text-gray-400" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Why Choose Us */}
-            <section className="py-24 bg-white">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Choose YUG Estates for Consulting?</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Expert Team</h3>
-                            <p className="text-gray-600">Seasoned agronomists and investment advisors with deep local knowledge.</p>
-                        </div>
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Tailored Solutions</h3>
-                            <p className="text-gray-600">Custom strategies for every investor, from first-time buyers to large-scale farmers.</p>
-                        </div>
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">End-to-End Support</h3>
-                            <p className="text-gray-600">Guidance at every step, from land selection to maximizing returns.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <ServiceDetailLayout
+            serviceNumber="05"
+            breadcrumb="Agricultural Consulting"
+            eyebrow="Service"
+            headline="Already own land?"
+            headlineItalic="Let's make sense of it."
+            sub="Inherited a plot? Bought one in haste? Managed farm drifting? We audit on-site and build a 12-month action plan — one season at a time, with honest trade-offs on the table."
+            whatsIncluded={[
+                { icon: Clipboard, label: 'On-site operational audit', description: 'Half-day walk: soil, crop, water, equipment, labor, infrastructure.' },
+                { icon: Calendar, label: '12-month action plan', description: 'Written roadmap with monthly milestones and expected outcomes per season.' },
+                { icon: PhoneCall, label: '6 monthly check-ins', description: 'One-hour call each month for two seasons. We course-correct as things develop.' },
+                { icon: Package, label: 'Vendor shortlisting', description: 'Equipment, seed, fertilizer, and labor — three vetted options each.' },
+                { icon: Banknote, label: 'Government scheme match', description: 'Subsidies, insurance, and credit schemes you actually qualify for.' },
+                { icon: Wrench, label: 'Infrastructure recommendations', description: 'Irrigation upgrades, storage, fencing — prioritized by ROI, not pitched.' },
+            ]}
+            process={[
+                {
+                    title: 'Send us a photo and the basics',
+                    description: 'Location, approximate area, what\u2019s currently growing, what\u2019s not working. A WhatsApp message is enough to start.',
+                },
+                {
+                    title: 'We visit the land (half-day on-site)',
+                    description: 'Walk the boundary, pull soil samples, meet the farmhand, inspect infrastructure, photograph conditions.',
+                },
+                {
+                    title: 'You get a 3-page action plan',
+                    description: 'Within a week of the visit. Diagnostics, 12-month plan, vendor list, and honest "we don\u2019t know" caveats where they apply.',
+                },
+                {
+                    title: 'Monthly check-ins for 6 months',
+                    description: 'First Tuesday of each month, one hour. Track progress, adjust plan, escalate anything time-sensitive.',
+                },
+            ]}
+            related={[
+                {
+                    icon: Sprout,
+                    title: 'Crop Cultivation',
+                    description: 'Rework the crop choice first if yield is the main problem.',
+                    href: '/services/crop-cultivation',
+                },
+                {
+                    icon: Tractor,
+                    title: 'Farm Management',
+                    description: 'If the audit suggests full-time operation support, we can take over.',
+                    href: '/services/farm-management',
+                },
+            ]}
+            ctaHeadline="Send us a photo of your land."
+            ctaSub="We can usually tell from a few photos and a conversation whether we\u2019re the right help — and whether the problem is worth solving at all."
+            whatsappMessage="Hi, I'd like an agricultural consulting audit for my land. I'll share photos and basics."
+        />
     );
-} 
+}

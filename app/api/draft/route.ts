@@ -19,5 +19,5 @@ export async function GET(request: Request) {
 
   const draft = await draftMode();
   draft.enable();
-  redirect(`/posts/${post.slug}`);
+  redirect(`/properties/${post.slug}`);
 }

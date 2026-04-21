@@ -1,80 +1,67 @@
-import React from 'react';
-import { Tractor, Leaf, Timer, Users } from 'lucide-react';
+import {
+    Tractor,
+    Sprout,
+    Droplets,
+    Bug,
+    FileText,
+    Calendar,
+    TrendingUp,
+    Users,
+} from 'lucide-react';
+import ServiceDetailLayout from '@/app/components/service-detail-layout';
 
 export default function FarmManagementPage() {
     return (
-        <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-32">
-                <div className="absolute inset-0 bg-black/50 mix-blend-overlay" />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-                    <div className="max-w-3xl">
-                        <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-                            Farm Management
-                        </h1>
-                        <p className="text-xl text-gray-200 leading-relaxed">
-                            Professional farm management services for optimal yields and peace of mind. We handle every aspect of your farmland investment, from cultivation to harvest.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Service Details */}
-            <section className="py-24">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">What We Offer</h2>
-                            <ul className="space-y-6 text-gray-600 text-lg">
-                                <li className="flex items-start gap-4">
-                                    <Tractor className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>End-to-end farm operations management</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <Leaf className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Soil health monitoring and crop planning</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <Timer className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Timely sowing, irrigation, and harvesting</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <Users className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Experienced on-ground staff and agronomists</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <Tractor className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Modern equipment and sustainable practices</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="bg-gray-100 rounded-2xl h-80 flex items-center justify-center">
-                            <Tractor className="w-24 h-24 text-gray-400" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Why Choose Us */}
-            <section className="py-24 bg-white">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Trust YUG Estates for Farm Management?</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Expertise</h3>
-                            <p className="text-gray-600">Decades of experience in managing diverse crops and farmlands across Karnataka.</p>
-                        </div>
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Transparency</h3>
-                            <p className="text-gray-600">Regular updates, reports, and open communication with every investor.</p>
-                        </div>
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Sustainability</h3>
-                            <p className="text-gray-600">Eco-friendly practices that protect your land and maximize long-term returns.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <ServiceDetailLayout
+            serviceNumber="02"
+            breadcrumb="Farm Management"
+            eyebrow="Service"
+            headline="We run your farm"
+            headlineItalic="while you're away."
+            sub="Bought managed farmland? We take over the operational side — crop planning, planting, irrigation, harvest, and a monthly report in plain English. You stay informed. We stay on the ground."
+            whatsIncluded={[
+                { icon: Tractor, label: 'End-to-end operations', description: 'Sowing, irrigation, weeding, harvest — we handle the full cycle.' },
+                { icon: Sprout, label: 'Crop rotation & soil testing', description: 'Annual soil panel, rotation planning, organic amendments as needed.' },
+                { icon: Droplets, label: 'Irrigation management', description: 'Schedule tuning, borewell monitoring, drip system upkeep.' },
+                { icon: Bug, label: 'Pest & disease control', description: 'Integrated pest management, preference for biological controls.' },
+                { icon: FileText, label: 'Monthly written report', description: 'Photos, activities, expenses, and any issues flagged — in plain English.' },
+                { icon: TrendingUp, label: 'Annual P&L summary', description: 'Yield, revenue, cost, net return — one page, filable with your CA.' },
+            ]}
+            process={[
+                {
+                    title: 'We walk the land with you',
+                    description: 'Half a day on-site. You tell us what you want (income / hobby / legacy), we assess soil, water, and boundary conditions.',
+                },
+                {
+                    title: 'We draft a management plan',
+                    description: 'Crop choice, rotation, irrigation schedule, and annual budget. You review and sign off before anything starts.',
+                },
+                {
+                    title: 'We run operations, daily',
+                    description: 'A named manager is on the ground weekly. You have their direct number. Routine decisions are made without bothering you.',
+                },
+                {
+                    title: 'You get a monthly report',
+                    description: 'First Monday of every month: what happened, what we spent, what to expect next month. Photos included.',
+                },
+            ]}
+            related={[
+                {
+                    icon: Sprout,
+                    title: 'Crop Cultivation',
+                    description: 'Match the right crop to your land and budget before committing to a plan.',
+                    href: '/services/crop-cultivation',
+                },
+                {
+                    icon: Users,
+                    title: 'Agricultural Consulting',
+                    description: 'On-site audit and course-correction for land that\u2019s already in operation.',
+                    href: '/services/agricultural-consulting',
+                },
+            ]}
+            ctaHeadline="Hand us the keys."
+            ctaSub="Most engagements start with a half-day farm walk-through. No commitment, no slide deck — we\u2019ll just look at what you have and tell you what we\u2019d do."
+            whatsappMessage="Hi, I'd like to discuss farm management for my plot. Can we schedule a walk-through?"
+        />
     );
-} 
+}

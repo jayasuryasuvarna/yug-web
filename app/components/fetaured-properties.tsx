@@ -24,36 +24,32 @@ export default async function FeaturedProperties() {
   }));
 
   return (
-    <section className="py-24 md:py-32 bg-gray-50">
+    <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-14">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-900/5 rounded-full text-sm mb-6">
-              <Sprout className="w-4 h-4 text-gray-600" />
-              <span className="font-medium text-gray-600">Premium Agricultural Properties</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-sm mb-6">
+              <Sprout className="w-4 h-4 text-amber-700" aria-hidden="true" />
+              <span className="font-medium text-amber-800">Handpicked listings</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Featured Investment{' '}
-              <span className="relative">
-                <span className="relative z-10">Opportunities</span>
-                <span className="absolute bottom-0 left-0 w-full h-3 bg-gradient-to-r from-gray-900/[0.08] to-gray-900/[0.02]"></span>
-              </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-stone-900 mb-4">
+              Land we&apos;ve walked — and would buy ourselves.
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl">
-              Discover our curated selection of premium agricultural properties, each offering unique investment potential and proven yield records.
+            <p className="text-lg text-stone-600 max-w-2xl">
+              A small, rotating shortlist of verified farmland and river-attached plots. Real photos, real owners, real expected yields.
             </p>
           </div>
 
           <Button
             asChild
             variant="outline"
-            className="hidden md:inline-flex items-center gap-2 group hover:bg-gray-900 hover:text-white transition-all"
+            className="hidden md:inline-flex items-center gap-2 group border-stone-300 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all cursor-pointer"
           >
             <Link href="/properties">
-              View All Properties
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              View all listings
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
             </Link>
           </Button>
         </div>
@@ -71,11 +67,11 @@ export default async function FeaturedProperties() {
         <div className="mt-12 text-center md:hidden">
           <Button
             asChild
-            className="inline-flex items-center gap-2"
+            className="inline-flex items-center gap-2 bg-stone-900 hover:bg-stone-950 text-white cursor-pointer"
           >
             <Link href="/properties">
-              View All Properties
-              <ArrowRight className="w-4 h-4" />
+              View all listings
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
           </Button>
         </div>

@@ -1,179 +1,296 @@
 import { draftMode } from "next/headers";
-import { getAllPosts, getHeroComponent } from "@/lib/api";
-import { Tractor, Trees, LineChart, Contact, ArrowRight, Building2, Timer } from 'lucide-react';
+import Link from "next/link";
+import Image from "next/image";
+import { getHeroComponent } from "@/lib/api";
+import { ShieldCheck, Sprout, MapPin, Search, ArrowRight, Star, TreePine, Handshake } from 'lucide-react';
 import FeaturedProperties from "./components/fetaured-properties";
 import ContactForm from "./components/contact-form";
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 
 
-function HeroPost({
+const POPULAR_SEARCHES = [
+  { label: 'All listings', href: '/properties' },
+  { label: 'Farm & plots', href: '/properties?propertyType=Agricultural' },
+  { label: 'Near Bangalore', href: '/properties?location=Bangalore' },
+  { label: 'Under ₹1 Cr', href: '/properties?sort=price_low_high' },
+];
+
+
+const VALUE_PROPS = [
+  {
+    icon: ShieldCheck,
+    title: 'Every plot visited',
+    description: 'We walk each site, verify the title, and photograph real conditions — no stock shots, no staged drone angles.',
+  },
+  {
+    icon: Sprout,
+    title: 'Yields disclosed up front',
+    description: 'Managed crops, expected annual yield, and soil notes on every farm listing — so you evaluate the way a local farmer would.',
+  },
+  {
+    icon: Handshake,
+    title: 'Direct, no brokerage chain',
+    description: 'You deal with the verified owner. We handpick, document the paperwork, and step out of the way when it matters.',
+  },
+];
+
+
+function HeroSearch({
   title,
   subTitle,
-  coverImage
-
+  coverImage,
 }: {
   title: string;
-  coverImage: any;
   subTitle: string;
+  coverImage: any;
 }) {
-
   return (
-    <div className="relative min-h-screen bg-gray-50">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-gray-900/[0.02] -z-1" />
+    <section className="relative bg-stone-50 overflow-hidden">
+      {/* Editorial background — paper grain + single warm radial wash, no decorative orbs */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_0%,rgba(251,243,226,0.6),transparent_55%)]" />
+        <div className="absolute inset-0 bg-grain opacity-[0.04] mix-blend-multiply" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="relative z-10">
-            <div className="inline-block mb-6">
-              <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-gray-900/[0.08] to-gray-900/[0.03] rounded-full text-sm">
-                <span className="flex h-2 w-2 rounded-full bg-gray-900"></span>
-                <span className="font-medium text-gray-600">Premium Investment Opportunities</span>
-              </div>
+      <div className="max-w-7xl mx-auto px-6 pt-14 md:pt-20 lg:pt-24 pb-16 md:pb-20">
+        {/* Primary grid — asymmetric 7/5 split */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left column — 7 cols */}
+          <div className="relative z-10 lg:col-span-7">
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1 bg-white/80 backdrop-blur border border-stone-200 rounded-full text-sm mb-6 shadow-sm motion-safe:animate-fade-up"
+            >
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-amber-500/60 motion-safe:animate-shimmer-soft" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-700" />
+              </span>
+              <span className="font-medium text-stone-700">Authentic real-estate marketplace · South Bangalore</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600">
-                Invest in Premium{' '}
-              </span>
-              <span className="relative block mt-2">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800">
-                  Managed Farmlands
-                </span>
-                <span className="absolute bottom-0 left-0 w-full h-3 bg-gradient-to-r from-gray-900/[0.08] to-gray-900/[0.02]"></span>
-              </span>
+            <h1
+              className="font-serif text-5xl md:text-6xl lg:text-[4.5rem] font-semibold tracking-[-0.02em] text-stone-900 mb-5 leading-[1.02] motion-safe:animate-fade-up"
+              style={{ animationDelay: '120ms' }}
+            >
+              Find land worth
+              <span className="block text-amber-700 italic font-normal">owning.</span>
             </h1>
 
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
-              Turn your investment into growing returns with our managed farmland properties. We handle everything from cultivation to harvest, while you watch your investment grow.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-8 transition-all duration-300"
-              >
-                View Properties
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-gray-200 hover:bg-gray-50"
-              >
-                Learn More
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="mt-12 grid grid-cols-3 gap-8">
-              <div>
-                <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700">12+</div>
-                <div className="text-sm text-gray-600 mt-1">Premium Properties</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700">95%</div>
-                <div className="text-sm text-gray-600 mt-1">Customer Satisfaction</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700">15yr</div>
-                <div className="text-sm text-gray-600 mt-1">Market Experience</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="relative">
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              {coverImage?.url ? (
-                <Image
-                  src={coverImage.url}
-                  alt="Premium Farmland"
-                  width={600}
-                  height={600}
-                  className="object-cover w-full h-full"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                  <Building2 className="w-12 h-12 text-gray-400" />
-                </div>
-              )}
-            </div>
-            {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gray-900/5 rounded-2xl -z-1"></div>
-            <div className="absolute -top-6 -right-6 w-32 h-32 bg-gray-900/5 rounded-2xl -z-1"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  );
-}
-
-
-// Features Component showcasing key benefits
-const Features = () => {
-  const features = [
-    {
-      icon: <Building2 className="w-8 h-8" />,
-      title: "Professional Management",
-      description: "Our expert team handles everything from cultivation to harvest, ensuring optimal yields and maximum returns on your investment."
-    },
-    {
-      icon: <Timer className="w-8 h-8" />,
-      title: "Premium Locations",
-      description: "Carefully selected farmlands in prime agricultural regions with fertile soil and reliable water sources."
-    },
-    {
-      icon: <LineChart className="w-8 h-8" />,
-      title: "Guaranteed Returns",
-      description: "Stable returns through professional crop management and established market connections."
-    }
-  ];
-
-  return (
-    <section className="py-24 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Why Choose YUG Estates
-          </h2>
-          <p className="text-xl text-gray-600">
-            We combine agricultural expertise with professional management to deliver
-            hassle-free farming investments.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group relative bg-gray-50 p-8 rounded-2xl transition-all hover:shadow-lg"
+            <p
+              className="text-lg md:text-xl text-stone-600 mb-3 leading-relaxed max-w-2xl motion-safe:animate-fade-up"
+              style={{ animationDelay: '200ms' }}
             >
-              <div className="mb-6 inline-block p-4 bg-gray-900 rounded-xl text-white">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {feature.description}
+              A handpicked marketplace of verified real estate. Every plot visited, every owner met, every price in plain rupees — so you buy the land, not the pitch.
+            </p>
+            {subTitle && (
+              <p
+                className="text-base text-stone-500 mb-8 max-w-2xl motion-safe:animate-fade-up"
+                style={{ animationDelay: '260ms' }}
+              >
+                {subTitle}
               </p>
-              {/* Decorative line */}
-              <div className="absolute bottom-0 left-8 right-8 h-0.5 bg-gray-900 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+            )}
+            {!subTitle && <div className="mb-8" />}
+
+            <form
+              action="/properties"
+              method="GET"
+              className="bg-white/95 backdrop-blur rounded-2xl shadow-xl shadow-stone-900/5 border border-stone-200 p-2 flex flex-col sm:flex-row gap-2 max-w-2xl motion-safe:animate-fade-up transition-shadow focus-within:shadow-2xl focus-within:shadow-stone-900/10 focus-within:border-stone-400"
+              role="search"
+              aria-label="Search properties"
+              style={{ animationDelay: '320ms' }}
+            >
+              <label htmlFor="hero-search" className="sr-only">
+                Search by city, neighborhood, or keyword
+              </label>
+              <div className="relative flex-1">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-stone-400" aria-hidden="true" />
+                <input
+                  id="hero-search"
+                  type="search"
+                  name="search"
+                  placeholder="Search by city, neighborhood, or keyword"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl text-stone-900 placeholder:text-stone-400 focus:outline-none"
+                />
+              </div>
+              <Button
+                type="submit"
+                size="lg"
+                className="bg-stone-900 hover:bg-stone-950 text-white cursor-pointer px-6"
+              >
+                Search
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+              </Button>
+            </form>
+
+            <div
+              className="mt-5 flex flex-wrap items-center gap-2 motion-safe:animate-fade-up"
+              style={{ animationDelay: '420ms' }}
+            >
+              <span className="text-sm text-stone-500 mr-1">Popular:</span>
+              {POPULAR_SEARCHES.map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm px-3 py-1.5 rounded-full bg-white border border-stone-200 text-stone-700 hover:bg-amber-50 hover:border-amber-200 hover:text-amber-800 transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
-          ))}
+
+            {/* Inline mini trust bar — fills the left-column whitespace */}
+            <div
+              className="mt-10 pt-6 border-t border-stone-200/80 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm motion-safe:animate-fade-up"
+              style={{ animationDelay: '520ms' }}
+            >
+              <div className="flex items-center gap-2 text-stone-600">
+                <div className="flex items-center gap-0.5 text-amber-500" aria-hidden="true">
+                  {[0, 1, 2, 3, 4].map(i => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                  ))}
+                </div>
+                <span><span className="font-semibold text-stone-900">4.9</span> verified buyers</span>
+              </div>
+              <div className="flex items-center gap-2 text-stone-600">
+                <ShieldCheck className="h-4 w-4 text-amber-700" aria-hidden="true" />
+                <span>100% site-visited</span>
+              </div>
+              <div className="flex items-center gap-2 text-stone-600">
+                <MapPin className="h-4 w-4 text-amber-700" aria-hidden="true" />
+                <span>South Bangalore & beyond</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right column — 5 cols: image with decorative cards */}
+          <div className="relative lg:col-span-5">
+            <div className="relative">
+              {/* Soft color wash behind image */}
+              <div
+                className="absolute -inset-5 rounded-[2rem] bg-gradient-to-br from-amber-100 via-stone-100 to-stone-200 blur-2xl opacity-70 -z-10 motion-safe:animate-fade-in"
+                aria-hidden="true"
+              />
+
+              {/* Main image */}
+              <div className="relative aspect-[4/5] rounded-[1.75rem] overflow-hidden shadow-2xl shadow-stone-900/10 ring-1 ring-stone-900/5">
+                {coverImage?.url ? (
+                  <Image
+                    src={coverImage.url}
+                    alt={title || 'Featured property'}
+                    width={720}
+                    height={900}
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    className="object-cover w-full h-full motion-safe:animate-ken-burns"
+                    priority
+                    fetchPriority="high"
+                  />
+                ) : (
+                  <div className="relative w-full h-full bg-gradient-to-br from-stone-900 via-stone-800 to-stone-700 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15),transparent_60%)]" />
+                    <TreePine className="w-20 h-20 text-white/40" aria-hidden="true" />
+                  </div>
+                )}
+
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-stone-900/30 to-transparent pointer-events-none" aria-hidden="true" />
+              </div>
+
+              {/* Floating trust card — top left */}
+              <div
+                className="hidden sm:block absolute -top-5 -left-5 motion-safe:animate-fade-up"
+                style={{ animationDelay: '600ms' }}
+              >
+                <div className="motion-safe:animate-float-slow">
+                  <div className="flex items-center gap-3 bg-white/95 backdrop-blur rounded-2xl px-4 py-3 shadow-xl shadow-stone-900/10 border border-stone-200">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+                      <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <div className="pr-1">
+                      <div className="text-xs text-stone-500 leading-tight">Every listing</div>
+                      <div className="text-sm font-semibold text-stone-900 leading-tight">Site-visited</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating rating card — bottom right */}
+              <div
+                className="hidden sm:block absolute -bottom-5 -right-5 motion-safe:animate-fade-up"
+                style={{ animationDelay: '720ms' }}
+              >
+                <div
+                  className="motion-safe:animate-float-slow"
+                  style={{ animationDelay: '1.5s', animationDuration: '11s' }}
+                >
+                  <div className="flex flex-col gap-1 bg-white/95 backdrop-blur rounded-2xl px-4 py-3 shadow-xl shadow-stone-900/10 border border-stone-200">
+                    <div className="flex items-center gap-1 text-amber-500" aria-label="Rated 4.9 out of 5">
+                      {[0, 1, 2, 3, 4].map(i => (
+                        <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                      ))}
+                      <span className="ml-1 text-sm font-semibold text-stone-900">4.9</span>
+                    </div>
+                    <div className="text-xs text-stone-500">Verified by real buyers</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* How it works — value-prop strip */}
+        <div className="mt-16 md:mt-20 pt-10 border-t border-stone-200/80">
+          <div className="flex items-baseline justify-between flex-wrap gap-4 mb-8">
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-amber-700 motion-safe:animate-fade-up">
+              How the marketplace works
+            </p>
+            <p
+              className="text-sm text-stone-500 motion-safe:animate-fade-up"
+              style={{ animationDelay: '80ms' }}
+            >
+              Three rules we don&apos;t break.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+            {VALUE_PROPS.map(({ icon: Icon, title, description }, index) => (
+              <div
+                key={title}
+                className="group relative bg-white border border-stone-200 p-6 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:border-stone-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-stone-900/5 motion-safe:animate-fade-up"
+                style={{ animationDelay: `${620 + index * 120}ms` }}
+              >
+                {/* Accent line at top — draws in from left on hover */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] bg-amber-700 scale-x-0 origin-left transition-transform duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
+                />
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700 transition-all duration-300 ease-out group-hover:bg-stone-900 group-hover:text-white group-hover:scale-105">
+                    <Icon className="w-5 h-5 transition-transform duration-300 group-hover:-rotate-6" aria-hidden="true" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-serif text-lg font-semibold text-stone-900 mb-1.5">
+                      {title}
+                    </h3>
+                    <p className="text-sm text-stone-600 leading-relaxed">
+                      {description}
+                    </p>
+                  </div>
+                </div>
+
+                <span
+                  aria-hidden="true"
+                  className="absolute top-5 right-5 text-xs font-mono text-stone-300 transition-colors duration-300 group-hover:text-amber-700"
+                >
+                  0{index + 1}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-
-
+}
 
 
 export default async function Page() {
@@ -181,17 +298,14 @@ export default async function Page() {
   const heroComponent = await getHeroComponent(isEnabled);
 
   return (
-    <div className="">
-      {/* <Intro /> */}
+    <div>
       {heroComponent && (
-        <HeroPost
+        <HeroSearch
           title={heroComponent.title}
           coverImage={heroComponent.coverImage}
           subTitle={heroComponent.subTitle}
         />
       )}
-      {/* <OurOfferings /> */}
-      <Features />
       <FeaturedProperties />
       <ContactForm />
     </div>

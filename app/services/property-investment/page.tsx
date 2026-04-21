@@ -1,80 +1,67 @@
-import React from 'react';
-import { LineChart, Building2, TrendingUp, Users } from 'lucide-react';
+import {
+    Search,
+    Scale,
+    FileText,
+    LineChart,
+    MapPin,
+    MessageSquare,
+    Footprints,
+    FileSignature,
+} from 'lucide-react';
+import ServiceDetailLayout from '@/app/components/service-detail-layout';
 
 export default function PropertyInvestmentPage() {
     return (
-        <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-32">
-                <div className="absolute inset-0 bg-black/50 mix-blend-overlay" />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-                    <div className="max-w-3xl">
-                        <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-                            Property Investment
-                        </h1>
-                        <p className="text-xl text-gray-200 leading-relaxed">
-                            Unlock the potential of agricultural and residential properties with expert investment guidance and curated opportunities from YUG Estates.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Service Details */}
-            <section className="py-24">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Investment Services</h2>
-                            <ul className="space-y-6 text-gray-600 text-lg">
-                                <li className="flex items-start gap-4">
-                                    <Building2 className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Curated selection of high-growth properties</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <LineChart className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Market analysis and investment insights</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <TrendingUp className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Personalized investment strategies</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <Users className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>End-to-end support from selection to purchase</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <LineChart className="w-7 h-7 text-gray-900 mt-1" />
-                                    <span>Transparent documentation and legal assistance</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="bg-gray-100 rounded-2xl h-80 flex items-center justify-center">
-                            <LineChart className="w-24 h-24 text-gray-400" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Why Invest with Us */}
-            <section className="py-24 bg-white">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Invest with YUG Estates?</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Growth Potential</h3>
-                            <p className="text-gray-600">Access properties in prime locations with high appreciation and yield prospects.</p>
-                        </div>
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Expert Guidance</h3>
-                            <p className="text-gray-600">Benefit from our deep market knowledge and personalized investment advice.</p>
-                        </div>
-                        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Secure Transactions</h3>
-                            <p className="text-gray-600">Transparent processes and legal support for a safe investment experience.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <ServiceDetailLayout
+            serviceNumber="04"
+            breadcrumb="Investment Advisory"
+            eyebrow="Service"
+            headline="Narrow fifty listings"
+            headlineItalic="down to three."
+            sub="We help you decide which plot is worth your money. Compare across districts, crop yield potential, title cleanliness, and long-term appreciation — every number in rupees per acre, written down, not pitched."
+            whatsIncluded={[
+                { icon: Search, label: 'Shortlist of 3-5 vetted plots', description: 'From our marketplace and external listings we\u2019ve personally walked.' },
+                { icon: Scale, label: 'Side-by-side comparison', description: 'Price, area, water access, yield potential, and appreciation — same page.' },
+                { icon: FileText, label: 'Title & paperwork review', description: 'Title chain, encumbrance certificate, and khata/mutation status for each plot.' },
+                { icon: LineChart, label: 'Financial model per plot', description: '10-year projection: break-even, annual yield, appreciation range, and tax.' },
+                { icon: MapPin, label: 'Visits scheduled together', description: 'We accompany you on 2-3 site visits. You ask anything; we answer straight.' },
+                { icon: MessageSquare, label: 'Written buy/no-buy note', description: 'One page per plot with our recommendation — and what we\u2019re not sure about.' },
+            ]}
+            process={[
+                {
+                    title: '30-minute call to understand your intent',
+                    description: 'Budget, timeline, income vs. appreciation tilt, managed vs. self-operated. No scripted discovery — just a conversation.',
+                },
+                {
+                    title: 'We shortlist inside a week',
+                    description: '3-5 plots with one-page summaries each. If none of our current listings fit, we look outside our marketplace too.',
+                },
+                {
+                    title: 'Visit 2-3 plots together',
+                    description: 'Usually a full Saturday. You ask the hard questions; we make sure the owner answers them. Paperwork in hand.',
+                },
+                {
+                    title: 'You get a written recommendation',
+                    description: 'Two pages. What to buy, what to skip, and why. Signed by us. You decide; we don\u2019t pressure.',
+                },
+            ]}
+            related={[
+                {
+                    icon: Footprints,
+                    title: 'Property Curation',
+                    description: 'Start by browsing our walked-and-verified marketplace listings.',
+                    href: '/properties',
+                },
+                {
+                    icon: FileSignature,
+                    title: 'Title & Paperwork',
+                    description: 'Once you\u2019ve picked a plot, we handle the closing documentation.',
+                    href: '/contact',
+                },
+            ]}
+            ctaHeadline="Book the 30-minute call."
+            ctaSub="A short call is usually enough to tell whether we can help or whether you\u2019re better off with a broker. No sales agenda, no pressure to convert."
+            whatsappMessage="Hi, I'd like to book the 30-minute investment advisory call."
+        />
     );
-} 
+}

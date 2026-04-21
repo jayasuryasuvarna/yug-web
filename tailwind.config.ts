@@ -12,7 +12,14 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: [
-					'var(--font-inter)'
+					'var(--font-inter)',
+					'system-ui',
+					'sans-serif'
+				],
+				serif: [
+					'var(--font-fraunces)',
+					'Georgia',
+					'serif'
 				]
 			},
 			borderRadius: {

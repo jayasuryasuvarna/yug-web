@@ -57,8 +57,8 @@ export default function PropertyCard({
     const imageUrls = images.length > 0 ? images.map(img => img.url) : [image];
 
     return (
-        <Link href={`/properties/${ slug }`}>
-            <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 cursor-pointer h-full flex flex-col">
+        <Link href={`/properties/${ slug }`} aria-label={`View ${title} in ${location}`}>
+            <div className="bg-white rounded-xl shadow-sm hover:shadow-lg hover:border-stone-300 transition-all border border-stone-200 cursor-pointer h-full flex flex-col">
                 <div className="relative h-[280px]">
                     <div className="overflow-hidden h-full" ref={emblaRef}>
                         <div className="flex h-full">
@@ -79,14 +79,16 @@ export default function PropertyCard({
                         <>
                             <div className="absolute inset-x-0 bottom-4 flex justify-between items-center px-4">
                                 <button
+                                    type="button"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         scrollPrev();
                                     }}
-                                    className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors ${ !canScrollPrev ? 'opacity-50 cursor-not-allowed' : '' }`}
+                                    aria-label="Previous image"
+                                    className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors cursor-pointer ${ !canScrollPrev ? 'opacity-50 cursor-not-allowed' : '' }`}
                                     disabled={!canScrollPrev}
                                 >
-                                    <ChevronLeft className="w-4 h-4 text-gray-900" />
+                                    <ChevronLeft className="w-4 h-4 text-stone-900" aria-hidden="true" />
                                 </button>
 
                                 <div className="flex gap-1.5">
@@ -99,36 +101,38 @@ export default function PropertyCard({
                                 </div>
 
                                 <button
+                                    type="button"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         scrollNext();
                                     }}
-                                    className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors ${ !canScrollNext ? 'opacity-50 cursor-not-allowed' : '' }`}
+                                    aria-label="Next image"
+                                    className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors cursor-pointer ${ !canScrollNext ? 'opacity-50 cursor-not-allowed' : '' }`}
                                     disabled={!canScrollNext}
                                 >
-                                    <ChevronRight className="w-4 h-4 text-gray-900" />
+                                    <ChevronRight className="w-4 h-4 text-stone-900" aria-hidden="true" />
                                 </button>
                             </div>
                         </>
                     )}
 
                     <div className="absolute top-4 left-4">
-                        <span className="bg-gray-900/80 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+                        <span className="bg-stone-900/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
                             {propertyType}
                         </span>
                     </div>
                 </div>
 
                 <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                    <h3 className="font-serif text-xl font-semibold text-stone-900 mb-2">{title}</h3>
 
-                    <div className="flex items-center gap-2 text-gray-600 mb-4">
-                        <MapPin className="h-5 w-5 flex-shrink-0" />
+                    <div className="flex items-center gap-2 text-stone-600 mb-4">
+                        <MapPin className="h-5 w-5 flex-shrink-0 text-amber-700" aria-hidden="true" />
                         <span className="line-clamp-1">{location}</span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-gray-600 mb-6">
-                        <Ruler className="h-5 w-5 flex-shrink-0" />
+                    <div className="flex items-center gap-2 text-stone-600 mb-6">
+                        <Ruler className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
                         <span className="text-sm">{area}</span>
                     </div>
 
@@ -136,7 +140,7 @@ export default function PropertyCard({
                         {amenities.map((amenity, index) => (
                             <span
                                 key={index}
-                                className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600"
+                                className="px-3 py-1 bg-stone-100 rounded-full text-sm text-stone-700"
                             >
                                 {amenity}
                             </span>
@@ -145,12 +149,11 @@ export default function PropertyCard({
 
                     <div className="flex justify-between items-center mt-auto">
                         <div>
-                            <span className="text-sm text-gray-600">Starting at</span>
-                            <div className="text-xl font-bold text-gray-900">{price}</div>
+                            <span className="text-sm text-stone-600">Starting at</span>
+                            <div className="text-xl font-semibold text-stone-900">{price}</div>
                         </div>
                         <Button
-                            className="bg-gray-900 hover:bg-gray-800"
-                            onClick={(e) => e.preventDefault()}
+                            className="bg-stone-900 hover:bg-stone-950 cursor-pointer"
                         >
                             View Details
                         </Button>

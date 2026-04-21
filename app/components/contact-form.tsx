@@ -1,7 +1,8 @@
 "use client";
 import React, { useRef, useState } from 'react';
-import { Mail, Phone, Send, User, MessageSquare, Building2 } from 'lucide-react';
+import { Mail, Phone, Send, User, MessageSquare, Building2, MessageCircle } from 'lucide-react';
 import { submitContactForm } from '@/app/actions/contact';
+import { CONTACT } from '@/lib/constants';
 
 export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -28,64 +29,84 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-20 md:py-28 bg-stone-100">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-900/5 rounded-full text-sm mb-6">
-              <MessageSquare className="w-4 h-4 text-gray-600" />
-              <span className="font-medium text-gray-600">Get in Touch</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-sm mb-6">
+              <MessageSquare className="w-4 h-4 text-amber-700" aria-hidden="true" />
+              <span className="font-medium text-amber-800">Talk to a real person</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Let's Discuss Your{' '}
-              <span className="relative">
-                <span className="relative z-10">Investment Goals</span>
-                <span className="absolute bottom-0 left-0 w-full h-3 bg-gradient-to-r from-gray-900/[0.08] to-gray-900/[0.02]"></span>
-              </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-stone-900 mb-4">
+              Have a question about a listing?
             </h2>
 
-            <p className="text-xl text-gray-600 mb-8">
-              Our team of agricultural investment experts is here to help you make informed decisions about your future investments.
+            <p className="text-lg text-stone-600 mb-8">
+              Tell us what you&apos;re looking for — farmland, a river-attached plot, or villa land — and we&apos;ll share verified options in your budget. No sales pressure, no spam.
             </p>
 
             {/* Contact Info Cards */}
             <div className="space-y-4">
-              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="p-3 bg-white rounded-lg shadow-sm">
-                  <Phone className="w-6 h-6 text-gray-900" />
+              <a
+                href={CONTACT.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200 hover:border-amber-300 hover:shadow-md transition-all"
+              >
+                <div className="p-3 bg-amber-50 rounded-lg group-hover:bg-amber-700 transition-colors">
+                  <MessageCircle className="w-6 h-6 text-amber-700 group-hover:text-white transition-colors" aria-hidden="true" />
                 </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Call Us</h3>
-                  <p className="text-gray-600">+91 98765 43210</p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-medium text-stone-900">WhatsApp</h3>
+                    <span className="text-xs font-mono uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Fastest</span>
+                  </div>
+                  <p className="text-stone-600 text-sm">Tap to start a chat — we reply within a few hours.</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="p-3 bg-white rounded-lg shadow-sm">
-                  <Mail className="w-6 h-6 text-gray-900" />
+              <a
+                href={CONTACT.phoneUrl}
+                className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-300 hover:shadow-md transition-all"
+              >
+                <div className="p-3 bg-amber-50 rounded-lg">
+                  <Phone className="w-6 h-6 text-amber-700" aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Email Us</h3>
-                  <p className="text-gray-600">contact@yugestates.com</p>
+                  <h3 className="font-medium text-stone-900 mb-1">Call us</h3>
+                  <p className="text-stone-600">{CONTACT.phone}</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="p-3 bg-white rounded-lg shadow-sm">
-                  <Building2 className="w-6 h-6 text-gray-900" />
+              <a
+                href={CONTACT.emailUrl}
+                className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200 hover:border-stone-300 hover:shadow-md transition-all"
+              >
+                <div className="p-3 bg-amber-50 rounded-lg">
+                  <Mail className="w-6 h-6 text-amber-700" aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Visit Us</h3>
-                  <p className="text-gray-600">123 Agri Tower, Farm Road<br />Bangalore, Karnataka 560001</p>
+                  <h3 className="font-medium text-stone-900 mb-1">Email us</h3>
+                  <p className="text-stone-600">{CONTACT.email}</p>
+                </div>
+              </a>
+
+              <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-stone-200">
+                <div className="p-3 bg-amber-50 rounded-lg">
+                  <Building2 className="w-6 h-6 text-amber-700" aria-hidden="true" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-stone-900 mb-1">Visit us</h3>
+                  <p className="text-stone-600">{CONTACT.address.line1}<br />{CONTACT.address.line2}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Form */}
-          <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+          <div className="bg-white rounded-2xl p-8 border border-stone-200 shadow-sm">
             <form action={handleSubmit} ref={formRef} className="space-y-6">
               {/* Name Input */}
               <div>
@@ -101,7 +122,7 @@ export default function ContactSection() {
                     id="name"
                     name="name"
                     required
-                    className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                    className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-stone-900 focus:border-transparent transition-colors"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -122,7 +143,7 @@ export default function ContactSection() {
                       id="email"
                       name="email"
                       required
-                      className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                      className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-stone-900 focus:border-transparent transition-colors"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -141,7 +162,7 @@ export default function ContactSection() {
                       id="phone"
                       name="phone"
                       required
-                      className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                      className="block w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-stone-900 focus:border-transparent transition-colors"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -157,7 +178,7 @@ export default function ContactSection() {
                   id="queryType"
                   name="queryType"
                   required
-                  className="block w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                  className="block w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-stone-900 focus:border-transparent transition-colors"
                 >
                   <option value="">Select your query type</option>
                   <option value="property">Property Information</option>
@@ -177,7 +198,7 @@ export default function ContactSection() {
                   name="message"
                   required
                   rows={4}
-                  className="block w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors resize-none"
+                  className="block w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-stone-900 focus:border-transparent transition-colors resize-none"
                   placeholder="Tell us about your investment goals..."
                 />
               </div>
@@ -187,10 +208,10 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={pending}
-                  className={`w-full py-4 px-6 rounded-xl text-white font-medium transition-all
+                  className={`w-full py-4 px-6 rounded-xl text-white font-medium transition-all cursor-pointer
                     ${ pending
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-gray-900 hover:bg-gray-800' }`}
+                      ? 'bg-stone-400 cursor-not-allowed'
+                      : 'bg-stone-900 hover:bg-stone-950' }`}
                 >
                   {pending ? (
                     'Sending...'
@@ -202,17 +223,18 @@ export default function ContactSection() {
                   )}
                 </button>
 
-                {/* Status Messages */}
-                {submitStatus === 'success' && (
-                  <p className="mt-4 text-center text-emerald-600 font-medium">
-                    Thank you! We'll get back to you soon.
-                  </p>
-                )}
-                {submitStatus === 'error' && (
-                  <p className="mt-4 text-center text-red-600 font-medium">
-                    Something went wrong. Please try again.
-                  </p>
-                )}
+                <div role="status" aria-live="polite" aria-atomic="true" className="min-h-[1.5rem]">
+                  {submitStatus === 'success' && (
+                    <p className="mt-4 text-center text-amber-700 font-medium">
+                      Thank you! We&apos;ll get back to you soon.
+                    </p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="mt-4 text-center text-red-600 font-medium">
+                      Something went wrong. Please try again.
+                    </p>
+                  )}
+                </div>
               </div>
             </form>
           </div>

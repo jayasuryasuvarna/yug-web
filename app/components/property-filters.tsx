@@ -37,50 +37,68 @@ export default function PropertyFilters({ propertyTypes, locations }: PropertyFi
     };
 
     return (
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+        <div className="bg-white rounded-xl shadow-lg p-6 border border-stone-200">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="relative">
-                    <input
-                        type="text"
-                        value={filters.search}
-                        onChange={(e) => handleFilterChange('search', e.target.value)}
-                        placeholder="Search properties..."
-                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-gray-900"
-                    />
-                    <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                <div>
+                    <label htmlFor="filter-search" className="sr-only">
+                        Search properties by keyword
+                    </label>
+                    <div className="relative">
+                        <input
+                            id="filter-search"
+                            type="search"
+                            value={filters.search}
+                            onChange={(e) => handleFilterChange('search', e.target.value)}
+                            placeholder="Search properties..."
+                            className="w-full pl-10 pr-4 py-3 rounded-lg border border-stone-200 focus:ring-2 focus:ring-stone-900 focus:border-transparent"
+                        />
+                        <Search className="absolute left-3 top-3.5 h-5 w-5 text-stone-400" aria-hidden="true" />
+                    </div>
                 </div>
 
-                <select
-                    value={filters.propertyType}
-                    onChange={(e) => handleFilterChange('propertyType', e.target.value)}
-                    className="border border-gray-200 rounded-lg px-4 py-3"
-                >
-                    <option value="">Property Type</option>
-                    {propertyTypes.map((type) => (
-                        <option key={type.name} value={type.name}>
-                            {type.name}
-                        </option>
-                    ))}
-                </select>
+                <div>
+                    <label htmlFor="filter-property-type" className="sr-only">
+                        Filter by property type
+                    </label>
+                    <select
+                        id="filter-property-type"
+                        value={filters.propertyType}
+                        onChange={(e) => handleFilterChange('propertyType', e.target.value)}
+                        className="w-full border border-stone-200 rounded-lg px-4 py-3 bg-white focus:ring-2 focus:ring-stone-900 focus:border-transparent cursor-pointer"
+                    >
+                        <option value="">All property types</option>
+                        {propertyTypes.map((type) => (
+                            <option key={type.name} value={type.name}>
+                                {type.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-                <select
-                    value={filters.location}
-                    onChange={(e) => handleFilterChange('location', e.target.value)}
-                    className="border border-gray-200 rounded-lg px-4 py-3"
-                >
-                    <option value="">Location</option>
-                    {locations.map((location) => (
-                        <option key={location} value={location}>
-                            {location}
-                        </option>
-                    ))}
-                </select>
+                <div>
+                    <label htmlFor="filter-location" className="sr-only">
+                        Filter by location
+                    </label>
+                    <select
+                        id="filter-location"
+                        value={filters.location}
+                        onChange={(e) => handleFilterChange('location', e.target.value)}
+                        className="w-full border border-stone-200 rounded-lg px-4 py-3 bg-white focus:ring-2 focus:ring-stone-900 focus:border-transparent cursor-pointer"
+                    >
+                        <option value="">All locations</option>
+                        {locations.map((location) => (
+                            <option key={location} value={location}>
+                                {location}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
                 <Button
-                    className="bg-gray-900 hover:bg-gray-800 h-full"
+                    className="bg-stone-900 hover:bg-stone-950 h-full cursor-pointer"
                     onClick={applyFilters}
                 >
-                    <Filter className="mr-2 h-5 w-5" />
+                    <Filter className="mr-2 h-5 w-5" aria-hidden="true" />
                     Apply Filters
                 </Button>
             </div>

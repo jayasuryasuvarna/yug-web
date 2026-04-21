@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scale, FileText, AlertTriangle, CheckCircle } from 'lucide-react';
+import { CONTACT } from '@/lib/constants';
 
 export default function TermsConditionsPage() {
     return (
@@ -239,9 +240,9 @@ export default function TermsConditionsPage() {
                         <div className="space-y-4 text-gray-600">
                             <p>If you have any questions about these Terms and Conditions, please contact us:</p>
                             <div className="space-y-2">
-                                <p><strong className="text-gray-900">Email:</strong> legal@yugestates.com</p>
-                                <p><strong className="text-gray-900">Phone:</strong> +91 98765 43210</p>
-                                <p><strong className="text-gray-900">Address:</strong> 123 Agri Tower, Farm Road, Bangalore, Karnataka 560001</p>
+                                <p><strong className="text-gray-900">Email:</strong> {CONTACT.email}</p>
+                                <p><strong className="text-gray-900">Phone:</strong> {CONTACT.phone}</p>
+                                <p><strong className="text-gray-900">Address:</strong> {CONTACT.address.full}</p>
                             </div>
                         </div>
                     </div>

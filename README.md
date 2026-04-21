@@ -164,21 +164,15 @@ yug-estates/
 - Desktop enhancement
 - Touch-friendly interfaces
 
-## 🤝 Contact & Support
+## 🤝 Contact
 
-### Property Inquiries
-
-- 📞 Phone: +91 98765 43210
-- 📧 Email: contact@yugestates.com
-
-### Technical Support
-
-- 📧 Email: tech@yugestates.com
-- 💬 Discord: [YUG Estates Tech](https://discord.gg/yugestates)
+- 📞 Phone: +91 96868 35577
+- 💬 WhatsApp: [wa.me/919686835577](https://wa.me/919686835577)
+- 📧 Email: yugrealestate22@gmail.com
 
 ## 📄 License
 
-Copyright © 2024 YUG Estates. All rights reserved.
+Copyright © 2026 YUG Estates. All rights reserved.
 
 ---
 

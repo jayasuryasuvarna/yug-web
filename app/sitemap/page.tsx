@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, Home, Building2, Users, FileText, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
+import { CONTACT } from '@/lib/constants';
 
 export default function SitemapPage() {
     const currentYear = new Date().getFullYear();
@@ -203,9 +204,9 @@ export default function SitemapPage() {
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Contact Information</h3>
                                 <div className="space-y-3 text-gray-600">
-                                    <p><strong className="text-gray-900">Phone:</strong> +91 98765 43210</p>
-                                    <p><strong className="text-gray-900">Email:</strong> contact@yugestates.com</p>
-                                    <p><strong className="text-gray-900">Address:</strong> 123 Agri Tower, Farm Road, Bangalore, Karnataka 560001</p>
+                                    <p><strong className="text-gray-900">Phone:</strong> {CONTACT.phone}</p>
+                                    <p><strong className="text-gray-900">Email:</strong> {CONTACT.email}</p>
+                                    <p><strong className="text-gray-900">Address:</strong> {CONTACT.address.full}</p>
                                 </div>
                             </div>
                             <div>

@@ -50,7 +50,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   const formattedPrice = `₹${ (Number(property.price)).toLocaleString('en-IN') }`;
 
   return (
-    <div className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all">
+    <div className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg hover:border-stone-300 transition-all cursor-pointer">
       {/* Image Carousel */}
       <div className="relative">
         <div className="overflow-hidden" ref={emblaRef}>
@@ -72,15 +72,17 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         {/* Navigation Controls */}
         <div className="absolute inset-x-0 bottom-4 flex justify-between items-center px-4">
           <button
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               scrollPrev();
             }}
-            className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors ${ !canScrollPrev ? 'opacity-50 cursor-not-allowed' : ''
+            aria-label="Previous image"
+            className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors cursor-pointer ${ !canScrollPrev ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             disabled={!canScrollPrev}
           >
-            <ChevronLeft className="w-4 h-4 text-gray-900" />
+            <ChevronLeft className="w-4 h-4 text-stone-900" aria-hidden="true" />
           </button>
 
           <div className="flex gap-1.5">
@@ -94,69 +96,71 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           </div>
 
           <button
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               scrollNext();
             }}
-            className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors ${ !canScrollNext ? 'opacity-50 cursor-not-allowed' : ''
+            aria-label="Next image"
+            className={`p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors cursor-pointer ${ !canScrollNext ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             disabled={!canScrollNext}
           >
-            <ChevronRight className="w-4 h-4 text-gray-900" />
+            <ChevronRight className="w-4 h-4 text-stone-900" aria-hidden="true" />
           </button>
         </div>
 
         {/* Location Badge */}
-        <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5">
-          <MapPin className="w-4 h-4 text-gray-600" />
-          <span className="text-sm font-medium text-gray-900">{property.location}</span>
+        <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm">
+          <MapPin className="w-4 h-4 text-amber-700" aria-hidden="true" />
+          <span className="text-sm font-medium text-stone-900">{property.location}</span>
         </div>
       </div>
 
       {/* Content */}
       <div className="flex flex-col flex-grow p-6">
-        <h3 className="text-xl font-semibold text-gray-900 group-hover:text-gray-600 transition-colors">
+        <h3 className="font-serif text-xl font-semibold text-stone-900 group-hover:text-amber-700 transition-colors">
           {property.title}
         </h3>
 
-        <p className="mt-2 text-gray-600 line-clamp-2 mb-6">{property.description}</p>
+        <p className="mt-2 text-stone-600 line-clamp-2 mb-6">{property.description}</p>
 
         {/* Managed Crops Section */}
-        <div className="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
+        <div className="mb-6 p-4 bg-stone-50 rounded-xl border border-stone-200">
           <div className="flex items-center gap-2 mb-3">
-            <Sprout className="w-4 h-4 text-gray-900" />
-            <span className="font-medium text-gray-900">Managed Crops</span>
+            <Sprout className="w-4 h-4 text-amber-700" aria-hidden="true" />
+            <span className="font-medium text-stone-900">Managed crops</span>
           </div>
           <div className="flex flex-wrap gap-2 mb-3">
             {property.managedCrops.map((crop, idx) => (
               <span
                 key={idx}
-                className="inline-flex items-center gap-1.5 text-sm px-2.5 py-1 bg-white text-gray-600 rounded-full border border-gray-100"
+                className="inline-flex items-center gap-1.5 text-sm px-2.5 py-1 bg-white text-stone-700 rounded-full border border-stone-200"
               >
-                <Sprout className="w-3.5 h-3.5" />
+                <Sprout className="w-3.5 h-3.5 text-amber-600" aria-hidden="true" />
                 {crop}
               </span>
             ))}
           </div>
-          <div className="text-sm font-medium text-gray-900 mt-3 flex items-center gap-2">
-            Expected Yield:
-            <span className="text-gray-600">{property.expectedYield}</span>
+          <div className="text-sm font-medium text-stone-900 mt-3 flex items-center gap-2">
+            Expected yield:
+            <span className="text-stone-600">{property.expectedYield}</span>
           </div>
         </div>
 
         {/* Price and CTA */}
         <div className="mt-auto flex justify-between items-center">
           <div>
-            <span className="text-xl font-bold text-gray-900">{formattedPrice}</span>
-            <span className="text-gray-600 text-sm ml-1">/acre</span>
+            <span className="text-xl font-semibold text-stone-900">{formattedPrice}</span>
+            <span className="text-stone-600 text-sm ml-1">/acre</span>
           </div>
           <Button
             variant="ghost"
             size="sm"
-            className="group/btn gap-2 hover:bg-gray-900 hover:text-white"
+            className="group/btn gap-2 text-amber-700 hover:bg-stone-900 hover:text-white cursor-pointer"
           >
-            View Details
-            <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+            View details
+            <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" aria-hidden="true" />
           </Button>
         </div>
       </div>
