@@ -46,9 +46,9 @@ const Header = () => {
                         <a
                             href={CONTACT.phoneUrl}
                             aria-label={`Call ${CONTACT.phone}`}
-                            className="flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-amber-700 transition-colors"
+                            className="relative inline-flex items-center px-2.5 py-2 -my-2 rounded-md text-sm font-medium text-stone-600 hover:text-amber-700 hover:bg-stone-50 transition-colors cursor-pointer before:absolute before:inset-0 before:content-[''] before:rounded-md"
                         >
-                            <Phone className="h-4 w-4" aria-hidden="true" />
+                            <Phone className="h-5 w-5 mr-1.5" aria-hidden="true" />
                             <span className="hidden lg:inline">Call</span>
                         </a>
                         <a
@@ -56,19 +56,24 @@ const Header = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Message us on WhatsApp"
-                            className="flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-amber-700 transition-colors"
+                            onClick={(e) => {
+                                // Brave / Chromium hit-test workaround: trigger navigation imperatively
+                                // so it fires even if the native anchor click is being missed.
+                                e.preventDefault();
+                                window.open(CONTACT.whatsappUrl, '_blank', 'noopener,noreferrer');
+                            }}
+                            className="relative inline-flex items-center px-2.5 py-2 -my-2 rounded-md text-sm font-medium text-stone-600 hover:text-amber-700 hover:bg-stone-50 transition-colors cursor-pointer before:absolute before:inset-0 before:content-[''] before:rounded-md"
                         >
-                            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                            <MessageCircle className="h-5 w-5 mr-1.5" aria-hidden="true" />
                             <span className="hidden lg:inline">WhatsApp</span>
                         </a>
-                        <Link href="/contact">
-                            <Button
-                                className="bg-stone-900 hover:bg-stone-950 text-white cursor-pointer"
-                                size="sm"
-                            >
-                                Contact Us
-                            </Button>
-                        </Link>
+                        <Button
+                            asChild
+                            size="sm"
+                            className="bg-stone-900 hover:bg-stone-950 text-white cursor-pointer"
+                        >
+                            <Link href="/contact">Contact Us</Link>
+                        </Button>
                     </div>
                 </div>
 
@@ -123,15 +128,14 @@ const Header = () => {
                             <span className="flex-1">WhatsApp</span>
                             <span className="text-sm text-stone-500">Fast reply</span>
                         </a>
-                        <Link
-                            href="/contact"
-                            onClick={() => setMobileOpen(false)}
-                            className="mt-2"
+                        <Button
+                            asChild
+                            className="w-full mt-2 bg-stone-900 hover:bg-stone-950 text-white cursor-pointer"
                         >
-                            <Button className="w-full bg-stone-900 hover:bg-stone-950 text-white cursor-pointer">
+                            <Link href="/contact" onClick={() => setMobileOpen(false)}>
                                 Contact Us
-                            </Button>
-                        </Link>
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             )}

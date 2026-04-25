@@ -13,9 +13,11 @@ export const CONTACT = {
 	phone: "+91 96868 35577",
 	phoneUrl: "tel:+919686835577",
 
-	// Base WhatsApp URL — ready to append `?text=<encoded>` via whatsappLink().
+	// Base WhatsApp URL — using api.whatsapp.com/send (more reliable across
+	// desktop browsers and less commonly blocked by ad/privacy extensions
+	// than the wa.me redirect). Append `&text=<encoded>` via whatsappLink().
 	whatsappNumber: "919686835577",
-	whatsappUrl: "https://wa.me/919686835577",
+	whatsappUrl: "https://api.whatsapp.com/send?phone=919686835577",
 
 	address: {
 		line1: "123 Agri Tower, Farm Road",
@@ -34,11 +36,13 @@ export const CONTACT = {
  * Build a WhatsApp URL with a pre-filled message.
  * Handles URL-encoding of the message so callers can pass plain strings.
  *
+ * Note: base URL already includes `?phone=...` so we append `&text=` (not `?`).
+ *
  * @example
  * whatsappLink("Hi, I'm interested in …")
- * // => "https://wa.me/919686835577?text=Hi%2C%20I'm%20interested%20in%20%E2%80%A6"
+ * // => "https://api.whatsapp.com/send?phone=919686835577&text=Hi%2C..."
  */
 export function whatsappLink(message?: string): string {
 	if (!message) return CONTACT.whatsappUrl;
-	return `${CONTACT.whatsappUrl}?text=${encodeURIComponent(message)}`;
+	return `${CONTACT.whatsappUrl}&text=${encodeURIComponent(message)}`;
 }

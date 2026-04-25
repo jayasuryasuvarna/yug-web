@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Ruler, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -152,11 +151,10 @@ export default function PropertyCard({
                             <span className="text-sm text-stone-600">Starting at</span>
                             <div className="text-xl font-semibold text-stone-900">{price}</div>
                         </div>
-                        <Button
-                            className="bg-stone-900 hover:bg-stone-950 cursor-pointer"
-                        >
+                        {/* Visual CTA — parent Link handles navigation. Span avoids <button> inside <a> (invalid HTML). */}
+                        <span className="inline-flex items-center justify-center h-10 px-4 rounded-md text-sm font-medium bg-stone-900 group-hover:bg-stone-950 text-white transition-colors">
                             View Details
-                        </Button>
+                        </span>
                     </div>
                 </div>
             </div>

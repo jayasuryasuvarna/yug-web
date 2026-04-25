@@ -2,7 +2,6 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, MapPin, Wheat, ArrowUpRight, Sprout } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 
 export interface Property {
   images: string[];
@@ -154,14 +153,11 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             <span className="text-xl font-semibold text-stone-900">{formattedPrice}</span>
             <span className="text-stone-600 text-sm ml-1">/acre</span>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="group/btn gap-2 text-amber-700 hover:bg-stone-900 hover:text-white cursor-pointer"
-          >
+          {/* Visual CTA — parent Link is the actual click target. Rendered as span so we don't nest <button> inside <a> (invalid HTML). */}
+          <span className="inline-flex items-center justify-center gap-2 h-9 px-3 rounded-md text-sm font-medium text-amber-700 group-hover:bg-stone-900 group-hover:text-white transition-colors">
             View details
-            <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" aria-hidden="true" />
-          </Button>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+          </span>
         </div>
       </div>
     </div>
