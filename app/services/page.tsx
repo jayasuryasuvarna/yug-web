@@ -40,7 +40,7 @@ const SERVICES = [
     {
         title: 'Investment Advisory',
         description:
-            'Narrow fifty listings down to three. Compare by district, crop yield, title cleanliness, and long-term appreciation — all in rupees per acre.',
+            'Narrow fifty listings down to three. Compare by district, crop yield, title cleanliness, and long-term appreciation — all in plain rupees, with the per-unit math written down.',
         icon: TrendingUp,
         href: '/services/property-investment',
         features: ['Property comparison', 'Due diligence', 'Legal review', 'Financial modeling'],

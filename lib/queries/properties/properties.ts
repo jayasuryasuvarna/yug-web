@@ -23,6 +23,8 @@ export const getAllPropertiesQuery = `
         title
         location
         price
+        priceUnit
+        pricePerUnit
         totalArea
         propertyType {
           name
@@ -30,6 +32,12 @@ export const getAllPropertiesQuery = `
         imagesCollection(limit: 10) {
           items {
             url
+          }
+        }
+        videosCollection(limit: 5) {
+          items {
+            url
+            contentType
           }
         }
         amenitiesCollection(limit: 10) {

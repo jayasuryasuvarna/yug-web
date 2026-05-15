@@ -94,6 +94,7 @@ YUG Estates is an **authentic real-estate marketplace** — not a luxury brand. 
 - **Type:** wrap display headings (`h1`/`h2`/property titles) in `font-serif` to pick up Fraunces. Body + UI copy stays `font-sans` (Inter, default).
 - **Icon-only buttons** must carry an `aria-label`; decorative icons inside labelled controls take `aria-hidden="true"`.
 - **Interactive elements** that aren't `<a>` or `<button>` wrappers still need `cursor-pointer` (shadcn Button does not add it by default).
+- **Property pricing model.** `price` (number, rupees) is always the **total** price for the listing — used by both the listing-page card (shown as `₹X.X Cr`) and the home featured card (also `₹X.X Cr`). Two **optional** fields, `pricePerUnit` (number, rupees) and `priceUnit` (string, e.g. `"acre"`, `"sqft"`, `"guntha"`), enable a richer subline like _"≈ ₹70,00,000 / acre"_ on the featured card and the detail page sticky price card. Leave both blank for properties where total price is the only meaningful number; populate both when per-unit pricing is informative. Don't write "per acre" in shared / generic site copy — that's a per-listing detail, not a brand promise. Use "in plain rupees" for marketplace-wide messaging.
 
 ## Pitfalls & Known Issues
 

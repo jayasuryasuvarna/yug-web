@@ -27,6 +27,15 @@ interface Asset {
     description: string;
 }
 
+interface VideoAsset {
+    url: string;
+    title?: string;
+    description?: string;
+    contentType?: string;
+    width?: number;
+    height?: number;
+}
+
 interface PropertyType {
     name: string;
     description: string;
@@ -76,6 +85,10 @@ export interface PropertyData {
     status: 'completed' | 'under-construction';
     features: string[];
     price: number;
+    /** Optional per-unit price (e.g. ₹70 lakh per acre → 7000000). */
+    pricePerUnit?: number | null;
+    /** Optional unit string for the per-unit price ("acre", "sqft", "guntha", ...). */
+    priceUnit?: string | null;
     location: string;
     totalArea: string;
     completionDate?: string;
@@ -84,6 +97,7 @@ export interface PropertyData {
     brochureUrl?: string;
     threeDDesignUrl?: string;
     imagesCollection: { items: Asset[]; };
+    videosCollection?: { items: VideoAsset[]; };
     amenitiesCollection: { items: Amenity[]; };
     propertyInvestmentDetailsCollection: { items: PropertyInvestmentDetail[]; };
     propertyCropsCollection: { items: PropertyCrop[]; };
@@ -151,6 +165,7 @@ export default async function PropertyPage({ params }: { params: Promise<{ slug:
                     <div className="motion-safe:animate-fade-up">
                         <PropertyHero
                             images={property.imagesCollection?.items || []}
+                            videos={property.videosCollection?.items || []}
                             title={property.title}
                         />
                     </div>
@@ -263,9 +278,15 @@ export default async function PropertyPage({ params }: { params: Promise<{ slug:
                                         {formatCr(property.price)}
                                     </span>
                                 </div>
-                                <p className="text-sm text-stone-500 tabular-nums mb-6">
-                                    {formatRupees(property.price)}
-                                </p>
+                                {property.pricePerUnit && property.priceUnit ? (
+                                    <p className="text-sm text-stone-500 tabular-nums mb-6">
+                                        {formatRupees(property.pricePerUnit)} / {property.priceUnit}
+                                    </p>
+                                ) : (
+                                    <p className="text-sm text-stone-500 tabular-nums mb-6">
+                                        {formatRupees(property.price)}
+                                    </p>
+                                )}
 
                                 <div className="space-y-2.5">
                                     <a

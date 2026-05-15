@@ -18,7 +18,7 @@ export default function PropertyInvestmentPage() {
             eyebrow="Service"
             headline="Narrow fifty listings"
             headlineItalic="down to three."
-            sub="We help you decide which plot is worth your money. Compare across districts, crop yield potential, title cleanliness, and long-term appreciation — every number in rupees per acre, written down, not pitched."
+            sub="We help you decide which plot is worth your money. Compare across districts, crop yield potential, title cleanliness, and long-term appreciation — every number in plain rupees, written down, not pitched."
             whatsIncluded={[
                 { icon: Search, label: 'Shortlist of 3-5 vetted plots', description: 'From our marketplace and external listings we\u2019ve personally walked.' },
                 { icon: Scale, label: 'Side-by-side comparison', description: 'Price, area, water access, yield potential, and appreciation — same page.' },

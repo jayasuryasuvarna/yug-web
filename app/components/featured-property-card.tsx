@@ -1,6 +1,6 @@
 "use client";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight, MapPin, Wheat, ArrowUpRight, Sprout } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin, Wheat, ArrowUpRight, Sprout, Video as VideoIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 export interface Property {
@@ -8,10 +8,16 @@ export interface Property {
   title: string;
   slug: string;
   location: string;
-  price: string;
+  price: number;
+  /** Optional per-unit price for richer display (e.g. 7000000). */
+  pricePerUnit?: number | null;
+  /** Optional unit string ("acre", "sqft", "guntha", ...). Defaults to no suffix if absent. */
+  priceUnit?: string | null;
   description: string;
   managedCrops: string[];
   expectedYield: string;
+  /** True when the property has at least one walkthrough video — surfaces a badge on the card. */
+  hasVideo?: boolean;
 }
 
 interface PropertyCardProps {
@@ -45,8 +51,13 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
     };
   }, [emblaApi, onSelect]);
 
-  // Format price to display per acre rate
-  const formattedPrice = `₹${ (Number(property.price)).toLocaleString('en-IN') }`;
+  // Total price in Crores (matches the listing-page card format).
+  const totalCr = (property.price || 0) / 10000000;
+  const formattedPrice = `₹${totalCr.toFixed(totalCr >= 10 ? 1 : 2)} Cr`;
+  // Optional per-unit subline — only renders if both fields are populated.
+  const formattedPerUnit = property.pricePerUnit && property.priceUnit
+    ? `≈ ₹${property.pricePerUnit.toLocaleString('en-IN')} / ${property.priceUnit}`
+    : null;
 
   return (
     <div className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg hover:border-stone-300 transition-all cursor-pointer">
@@ -114,6 +125,14 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           <MapPin className="w-4 h-4 text-amber-700" aria-hidden="true" />
           <span className="text-sm font-medium text-stone-900">{property.location}</span>
         </div>
+
+        {/* Video badge — only when this listing has a walkthrough video */}
+        {property.hasVideo && (
+          <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-stone-900/85 backdrop-blur-sm rounded-full px-2.5 py-1 shadow-sm pointer-events-none">
+            <VideoIcon className="w-3.5 h-3.5 text-white" aria-hidden="true" />
+            <span className="text-xs font-medium uppercase tracking-wider text-white">Video</span>
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -148,10 +167,12 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         </div>
 
         {/* Price and CTA */}
-        <div className="mt-auto flex justify-between items-center">
+        <div className="mt-auto flex justify-between items-end">
           <div>
-            <span className="text-xl font-semibold text-stone-900">{formattedPrice}</span>
-            <span className="text-stone-600 text-sm ml-1">/acre</span>
+            <span className="block text-xl font-semibold text-stone-900 tabular-nums">{formattedPrice}</span>
+            {formattedPerUnit && (
+              <span className="block text-xs text-stone-500 tabular-nums mt-0.5">{formattedPerUnit}</span>
+            )}
           </div>
           {/* Visual CTA — parent Link is the actual click target. Rendered as span so we don't nest <button> inside <a> (invalid HTML). */}
           <span className="inline-flex items-center justify-center gap-2 h-9 px-3 rounded-md text-sm font-medium text-amber-700 group-hover:bg-stone-900 group-hover:text-white transition-colors">

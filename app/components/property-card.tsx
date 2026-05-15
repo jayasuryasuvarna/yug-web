@@ -2,7 +2,7 @@
 "use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import { MapPin, Ruler, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Ruler, ChevronLeft, ChevronRight, Video as VideoIcon } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -16,6 +16,7 @@ interface PropertyCardProps {
     slug: string;
     images?: { url: string; }[];
     propertyType: string;
+    hasVideo?: boolean;
 }
 
 export default function PropertyCard({
@@ -27,7 +28,8 @@ export default function PropertyCard({
     amenities,
     slug,
     images = [],
-    propertyType
+    propertyType,
+    hasVideo = false,
 }: PropertyCardProps) {
     const [emblaRef, emblaApi] = useEmblaCarousel();
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -120,6 +122,13 @@ export default function PropertyCard({
                             {propertyType}
                         </span>
                     </div>
+
+                    {hasVideo && (
+                        <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-stone-900/85 backdrop-blur-sm rounded-full px-2.5 py-1 shadow-sm pointer-events-none">
+                            <VideoIcon className="w-3.5 h-3.5 text-white" aria-hidden="true" />
+                            <span className="text-xs font-medium uppercase tracking-wider text-white">Video</span>
+                        </div>
+                    )}
                 </div>
 
                 <div className="p-6 flex flex-col flex-grow">

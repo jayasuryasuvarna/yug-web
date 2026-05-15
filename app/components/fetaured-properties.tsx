@@ -18,9 +18,12 @@ export default async function FeaturedProperties() {
     slug: item.slug,
     location: item.location,
     price: item.price,
+    pricePerUnit: item.pricePerUnit ?? null,
+    priceUnit: item.priceUnit ?? null,
     description: item.description,
     managedCrops: Array.isArray(item.propertyCropsCollection?.items) ? item.propertyCropsCollection.items.map((crop: any) => crop.cropType.name) : [],
     expectedYield: item.expectedYield,
+    hasVideo: Array.isArray(item.videosCollection?.items) && item.videosCollection.items.length > 0,
   }));
 
   return (

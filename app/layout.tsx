@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s · YUG Estates",
   },
   description:
-    "An authentic real-estate marketplace for owner-verified farmland, river-attached plots, and villa land in South Bangalore. Every listing visited, photographed, and priced per acre.",
+    "An authentic real-estate marketplace for owner-verified farmland, river-attached plots, and villa land in South Bangalore. Every listing visited, photographed, and priced in plain rupees.",
   metadataBase: new URL("https://yugestates.com"),
   openGraph: {
     title: "YUG Estates — Handpicked farmland & river-attached plots",

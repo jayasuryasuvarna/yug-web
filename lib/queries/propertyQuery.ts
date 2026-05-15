@@ -9,6 +9,8 @@ export const PROPERTY_FIELDS = `
     status
     features
     price
+    priceUnit
+    pricePerUnit
     location
     totalArea
     completionDate
@@ -31,7 +33,18 @@ export const PROPERTY_FIELDS = `
         height
       }
     }
-    
+
+    videosCollection {
+      items {
+        url
+        title
+        description
+        contentType
+        width
+        height
+      }
+    }
+
     amenitiesCollection {
       items {
         sys {

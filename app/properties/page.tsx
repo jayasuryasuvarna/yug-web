@@ -16,6 +16,9 @@ interface Property {
     imagesCollection?: {
         items: { url: string; }[];
     };
+    videosCollection?: {
+        items: { url: string; }[];
+    };
     amenitiesCollection?: {
         items: { name: string; }[];
     };
@@ -144,7 +147,7 @@ export default async function PropertiesPage({
                             className="text-lg md:text-xl text-stone-600 leading-relaxed max-w-2xl mb-6 motion-safe:animate-fade-up"
                             style={{ animationDelay: '220ms' }}
                         >
-                            Every listing site-visited, owner-verified, and photographed by our team. Browse, filter, and compare in rupees per acre.
+                            Every listing site-visited, owner-verified, and photographed by our team. Browse, filter, and compare in plain rupees.
                         </p>
 
                         {/* Inline meta */}
@@ -162,7 +165,7 @@ export default async function PropertiesPage({
                                 <span>{locations.length === 1 ? 'location' : 'locations'}</span>
                             </span>
                             <span className="h-3 w-px bg-stone-300" aria-hidden="true" />
-                            <span>Priced per acre, in rupees</span>
+                            <span>Priced in plain rupees</span>
                         </div>
                     </div>
                 </div>
@@ -250,6 +253,7 @@ export default async function PropertiesPage({
                                         slug={property.slug}
                                         images={property.imagesCollection?.items}
                                         propertyType={property.propertyType?.name || 'Property'}
+                                        hasVideo={(property.videosCollection?.items?.length ?? 0) > 0}
                                     />
                                 </div>
                             ))}
